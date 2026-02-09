@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vindicta-engine"
+version = "0.1.0"
+description = "Physics, Dice, and AI Core for the Vindicta Platform"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "vindicta-foundation",
+    "numpy>=1.26.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.0.0",
+    "ruff>=0.1.0",
+    "pytest>=8.0.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vindicta_engine"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.uv.sources]
+vindicta-foundation = { path = "../vindicta-foundation", editable = true }
+
+[tool.mypy]
+strict = true
+python_version = "3.12"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
