@@ -27,7 +27,7 @@ packages = ["src/vindicta_engine"]
 allow-direct-references = true
 
 [tool.uv.sources]
-vindicta-foundation = { workspace = true }
+vindicta-foundation = { path = "../vindicta-foundation", editable = true }
 
 [tool.mypy]
 strict = true
