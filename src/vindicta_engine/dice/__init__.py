@@ -1,5 +1,4 @@
-"""
-Dice-Engine: Cryptographically secure dice rolling.
+"""Dice-Engine: Cryptographically secure dice rolling.
 
 Provides CSPRNG-backed dice rolling with entropy proofs
 for fair gameplay in the Vindicta Platform.
