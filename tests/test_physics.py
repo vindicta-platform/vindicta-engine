@@ -1,19 +1,23 @@
+"""Tests for the physics/dice engine."""
+
 from vindicta_engine.physics.engine import DiceEngine
-from vindicta_engine.physics.models import DiceRoll, CombatResult
+from vindicta_engine.dice.models import DiceRoll, CombatResult
 
 
 def test_dice_roll_defaults() -> None:
+    """DiceEngine should produce valid D6 rolls."""
     engine = DiceEngine()
     roll = engine.roll_d6()
 
     assert isinstance(roll, DiceRoll)
     assert 1 <= roll.value <= 6
     assert roll.sides == 6
-    assert roll.id is not None  # Inherited from VindictaModel
-    assert roll.created_at is not None  # Inherited from VindictaModel
+    assert roll.entropy_proof  # Non-empty proof string
+    assert roll.roll_id is not None  # UUID from dataclass
 
 
 def test_deterministic_seed() -> None:
+    """Same seed should produce same roll sequence."""
     seed = b"test_seed_123"
     engine1 = DiceEngine(seed)
     engine2 = DiceEngine(seed)
@@ -26,9 +30,7 @@ def test_deterministic_seed() -> None:
 
 
 def test_combat_roll_logic() -> None:
-    # Deterministic engine to ensure hits
-    # We can't easily force specific values without mocking internals,
-    # but we can check constraints.
+    """Combat roll should respect attack count constraints."""
     engine = DiceEngine()
 
     result = engine.combat_roll(
@@ -41,13 +43,14 @@ def test_combat_roll_logic() -> None:
 
     assert isinstance(result, CombatResult)
     assert result.attacks == 10
-    # May be more due to reroll appends
+    # Hit rolls may be more than attacks due to reroll appends
     assert len(result.hit_rolls) >= 10
-    assert result.hits <= 10 + len(result.hit_rolls) - 10  # Rerolls add to list
+    assert result.hits <= result.attacks
     assert result.damage_dealt >= 0
 
 
 def test_batch_roll() -> None:
+    """Batch roll should produce correct number of results."""
     engine = DiceEngine()
     batch = engine.roll_batch(count=10, sides=6)
 
