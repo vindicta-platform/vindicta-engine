@@ -29,9 +29,6 @@ packages = ["src/vindicta_engine"]
 [tool.hatch.metadata]
 allow-direct-references = true
 
-[tool.uv.sources]
-vindicta-foundation = { workspace = true }
-
 [tool.mypy]
 strict = true
 python_version = "3.12"
