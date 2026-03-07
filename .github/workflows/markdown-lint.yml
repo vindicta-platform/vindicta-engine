@@ -9,6 +9,6 @@ on:
 
 jobs:
   lint:
-    uses: vindicta-platform/.github/.github/workflows/markdown-lint-template.yml@main
+    uses: vindicta-platform/.github/.github/workflows/markdown-lint-template.yml@1216e0609ec638b935e0f4123b2f9fcc69cfe14f # main
     permissions:
       contents: read

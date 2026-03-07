@@ -10,6 +10,6 @@ on:
 
 jobs:
   check:
-    uses: vindicta-platform/.github/.github/workflows/migration-safety-template.yml@main
+    uses: vindicta-platform/.github/.github/workflows/migration-safety-template.yml@1216e0609ec638b935e0f4123b2f9fcc69cfe14f # main
     permissions:
       contents: read

@@ -8,6 +8,6 @@ on:
 
 jobs:
   gate:
-    uses: vindicta-platform/.github/.github/workflows/publish-gate-template.yml@main
+    uses: vindicta-platform/.github/.github/workflows/publish-gate-template.yml@1216e0609ec638b935e0f4123b2f9fcc69cfe14f # main
     permissions:
       contents: read
