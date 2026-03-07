@@ -6,7 +6,7 @@ on:
 
 jobs:
   auto-merge:
-    uses: vindicta-platform/.github/.github/workflows/auto-merge-template.yml@main
+    uses: vindicta-platform/.github/.github/workflows/auto-merge-template.yml@1216e0609ec638b935e0f4123b2f9fcc69cfe14f # main
     permissions:
       pull-requests: write
       contents: write

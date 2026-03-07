@@ -18,7 +18,7 @@ on:
 
 jobs:
   ci:
-    uses: vindicta-platform/.github/.github/workflows/ci-python-template.yml@main
+    uses: vindicta-platform/.github/.github/workflows/ci-python-template.yml@1216e0609ec638b935e0f4123b2f9fcc69cfe14f # main
     permissions:
       contents: read
       pull-requests: write
