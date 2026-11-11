@@ -26,16 +26,18 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: '3.12'
       - name: Install ade-compliance at a pinned commit
-        run: python -m pip install "ade-compliance @ git+https://github.com/First-ADE/first-ade@2344f99f67cd580dbadbc0083f0465a95979c267"
+        run: pip install --only-binary :all: --no-binary ade-compliance "ade-compliance @ git+https://github.com/First-ADE/first-ade@2344f99f67cd580dbadbc0083f0465a95979c267"
       - name: Run the checker
         run: |
           set +e
           mkdir -p evidence-out
-          git rev-parse HEAD > evidence-out/commit.txt
+          printf '%s\n' "${{ github.event.pull_request.head.sha || github.sha }}" > evidence-out/commit.txt
           ade-compliance check-all src tests > evidence-out/summary.txt 2> evidence-out/stderr.txt
           echo "check-all exit=$?" >> evidence-out/exit.txt
           ade-compliance generate-report src tests > evidence-out/report.json 2>> evidence-out/stderr.txt
