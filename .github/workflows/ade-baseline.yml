@@ -38,7 +38,7 @@ jobs:
         run: |
           set +e
           mkdir -p evidence-out
-          printf '%s\n' "${{ github.event.pull_request.head.sha || github.sha }}" > evidence-out/commit.txt
+          printf '%s\n' "$(git rev-parse HEAD)" > evidence-out/commit.txt
           ade-compliance check-all src tests > evidence-out/summary.txt 2> evidence-out/stderr.txt
           echo "check-all exit=$?" >> evidence-out/exit.txt
           ade-compliance generate-report src tests > evidence-out/report.json 2>> evidence-out/stderr.txt
