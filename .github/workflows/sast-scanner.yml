@@ -1,10 +1,10 @@
 name: SAST Scanner
 
 on:
+  # No path filter here: "Static Analysis (Bandit)" is a required check, so it must report
+  # on every pull request. The job itself skips quickly when there is no Python source.
   pull_request:
     branches: [main]
-    paths:
-      - 'src/**/*.py'
   push:
     branches: [main]
     paths:

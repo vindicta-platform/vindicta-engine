@@ -33,6 +33,11 @@ allow-direct-references = true
 strict = true
 python_version = "3.12"
 
+# vindicta-foundation ships no py.typed marker yet, so mypy would treat its classes as Any.
+[[tool.mypy.overrides]]
+module = ["vindicta_foundation.*"]
+follow_untyped_imports = true
+
 [tool.ruff]
 line-length = 88
 target-version = "py312"
@@ -63,3 +68,8 @@ omit = ["tests/*"]
 [tool.coverage.report]
 fail_under = 90
 show_missing = true
+
+# vindicta-foundation is not published to PyPI. Without a source, `uv sync` cannot resolve it
+# and every CI job that installs this package fails. Pinned to a commit; bump deliberately.
+[tool.uv.sources]
+vindicta-foundation = { git = "https://github.com/vindicta-platform/vindicta-foundation", rev = "1dfed5c92ef87f8ad42f12bc41dfc588e27cbcf2" }
