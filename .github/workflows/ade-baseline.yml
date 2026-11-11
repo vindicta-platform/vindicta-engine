@@ -32,7 +32,8 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install ade-compliance at a pinned commit
-        run: pip install --only-binary :all: --no-binary ade-compliance "ade-compliance @ git+https://github.com/First-ADE/first-ade@2344f99f67cd580dbadbc0083f0465a95979c267"
+        run: |
+          pip install --only-binary :all: --no-binary ade-compliance "ade-compliance @ git+https://github.com/First-ADE/first-ade@2344f99f67cd580dbadbc0083f0465a95979c267"
       - name: Run the checker
         run: |
           set +e
