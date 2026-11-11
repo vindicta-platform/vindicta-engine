@@ -1,6 +1,6 @@
 # Vindicta Engine
 
-> **Status:** partial implementation (dice rolling, entropy buffer, evaluator scaffolding) from the Vindicta design record; development stopped March 2026. Single maintainer.
+> **Status:** active, pre-1.0. Partial implementation (dice rolling, entropy buffer, evaluator scaffolding); no code changed between March and November 2026, when work resumed with the dice core (spec 002). Single maintainer.
 
 Core physics, dice rolling, and AI simulation engine for the Vindicta Platform.
 
