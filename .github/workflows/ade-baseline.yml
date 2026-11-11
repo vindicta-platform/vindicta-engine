@@ -1,0 +1,49 @@
+name: ADE baseline (report only)
+
+# Plan task E1.2: run First-ADE's compliance checker against this repository as it stands
+# and keep the report as evidence. Report-only: findings never fail this job.
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.ade-compliance.yml'
+      - '.github/workflows/ade-baseline.yml'
+  push:
+    branches: [main]
+    paths:
+      - '.ade-compliance.yml'
+      - '.github/workflows/ade-baseline.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  baseline:
+    name: ade-compliance check-all (audit)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: '3.12'
+      - name: Install ade-compliance at a pinned commit
+        run: python -m pip install "ade-compliance @ git+https://github.com/First-ADE/first-ade@2344f99f67cd580dbadbc0083f0465a95979c267"
+      - name: Run the checker
+        run: |
+          set +e
+          mkdir -p evidence-out
+          git rev-parse HEAD > evidence-out/commit.txt
+          ade-compliance check-all src tests > evidence-out/summary.txt 2> evidence-out/stderr.txt
+          echo "check-all exit=$?" >> evidence-out/exit.txt
+          ade-compliance generate-report src tests > evidence-out/report.json 2>> evidence-out/stderr.txt
+          echo "generate-report exit=$?" >> evidence-out/exit.txt
+          cat evidence-out/summary.txt evidence-out/exit.txt
+          exit 0
+      - uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
+        with:
+          name: ade-baseline
+          path: evidence-out/
+          if-no-files-found: error

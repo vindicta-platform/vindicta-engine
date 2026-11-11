@@ -1,0 +1,26 @@
+# ADE compliance, report-only baseline (plan task E1.1).
+# Strictness "audit" records findings and never fails a build.
+# It moves to "enforce" in plan task E3.6, once the gates are shown to catch the known defects.
+global:
+  strictness: audit
+  enabled: true
+  audit_path: ".ade_compliance/audit.sqlite"
+
+engines:
+  spec:
+    enabled: true
+    strictness: audit
+  test:
+    enabled: true
+    strictness: audit
+  traceability:
+    enabled: true
+    strictness: audit
+    languages:
+      - python
+  adr:
+    enabled: true
+    strictness: audit
+  forbidden_api:
+    enabled: true
+    strictness: audit
