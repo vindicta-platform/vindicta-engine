@@ -6,6 +6,9 @@ on:
 
 jobs:
   auto-merge:
+    # Opt-in only. With auto-merge disabled in repository settings this job can only fail,
+    # and with zero required reviews it should not be enabled without a deliberate decision.
+    if: vars.AUTO_MERGE_ENABLED == 'true'
     uses: vindicta-platform/.github/.github/workflows/auto-merge-template.yml@main
     permissions:
       pull-requests: write
