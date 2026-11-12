@@ -1,7 +1,7 @@
 import datetime
 
 
-def verify_integrity():
+def verify_integrity() -> dict[str, object]:
     """Performs a self-check of the Vindicta Engine domain."""
     return {
         "status": "operational",
