@@ -1,9 +1,5 @@
 # Vindicta Engine
 
-<!-- BADGES:START -->
-![CI](https://github.com/vindicta-platform/vindicta-engine/actions/workflows/ci.yml/badge.svg) ![License](https://img.shields.io/github/license/vindicta-platform/vindicta-engine) ![Version](https://img.shields.io/github/v/release/vindicta-platform/vindicta-engine?include_prereleases) ![Issues](https://img.shields.io/github/issues/vindicta-platform/vindicta-engine) ![PRs](https://img.shields.io/github/issues-pr/vindicta-platform/vindicta-engine)
-<!-- BADGES:END -->
-
 > **Status:** active, pre-1.0. Partial implementation (dice rolling, entropy buffer, evaluator scaffolding); no code changed between March and November 2026, when work resumed with the dice core (spec 002). Single maintainer.
 
 Core physics, dice rolling, and AI simulation engine for the Vindicta Platform.

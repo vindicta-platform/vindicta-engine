@@ -2,7 +2,7 @@
 
 **Purpose**: Validate specification completeness and quality before proceeding to planning  
 **Created**: 2026-02-23  
-**Feature**: [spec.md](file:///c:/Users/bfoxt/vindicta-playground/vindicta-engine/specs/001-simulation-stat-retrieval/spec.md)
+**Feature**: [spec.md](file:///~/vindicta-playground/vindicta-engine/specs/001-simulation-stat-retrieval/spec.md)
 
 ## Content Quality
 

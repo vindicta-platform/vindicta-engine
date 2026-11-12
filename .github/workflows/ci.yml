@@ -8,10 +8,13 @@ on:
       - 'docs/**'
       - 'LICENSE'
       - '.gitignore'
-  # No path filter here: "Pre-Commit Checks" and "Python Tests (3.12)" are required checks,
-  # and a required check that never runs leaves the pull request blocked forever.
   pull_request:
     branches: [main, master]
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - 'LICENSE'
+      - '.gitignore'
 
 jobs:
   ci:
