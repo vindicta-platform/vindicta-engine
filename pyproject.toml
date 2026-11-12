@@ -5,6 +5,8 @@ build-backend = "hatchling.build"
 [project]
 name = "vindicta-engine"
 version = "0.1.0"
+authors = [{ name = "Brandon Fox", email = "32090240+brandon-fox@users.noreply.github.com" }]
+license = { text = "MIT" }
 description = "Physics, Dice, and AI Core for the Vindicta Platform"
 readme = "README.md"
 requires-python = ">=3.12"
