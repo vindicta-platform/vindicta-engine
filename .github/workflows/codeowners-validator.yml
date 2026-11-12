@@ -8,8 +8,12 @@ on:
       - '.github/CODEOWNERS'
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   validate:
-    uses: vindicta-platform/.github/.github/workflows/codeowners-validator-template.yml@main
+    uses: vindicta-platform/.github/.github/workflows/codeowners-validator-template.yml@b25991df3c05c3faa4a1376ba206492f8b2ad504 # main
     permissions:
       contents: read

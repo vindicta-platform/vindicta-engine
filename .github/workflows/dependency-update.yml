@@ -2,12 +2,16 @@ name: Dependency Update
 
 on:
   schedule:
-    - cron: '0 4 * * 1'
+    - cron: '27 4 * * 1'
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   update:
-    uses: vindicta-platform/.github/.github/workflows/dependency-update-template.yml@main
+    uses: vindicta-platform/.github/.github/workflows/dependency-update-template.yml@b25991df3c05c3faa4a1376ba206492f8b2ad504 # main
     permissions:
       contents: write
       pull-requests: write

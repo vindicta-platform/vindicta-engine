@@ -7,9 +7,13 @@ on:
       - 'src/**/*.py'
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   analyze:
-    uses: vindicta-platform/.github/.github/workflows/test-impact-template.yml@main
+    uses: vindicta-platform/.github/.github/workflows/test-impact-template.yml@b25991df3c05c3faa4a1376ba206492f8b2ad504 # main
     permissions:
       contents: read
       pull-requests: write

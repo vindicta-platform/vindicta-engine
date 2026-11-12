@@ -11,8 +11,12 @@ on:
       - 'src/**/*.py'
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   scan:
-    uses: vindicta-platform/.github/.github/workflows/sast-scanner-template.yml@main
+    uses: vindicta-platform/.github/.github/workflows/sast-scanner-template.yml@b25991df3c05c3faa4a1376ba206492f8b2ad504 # main
     permissions:
       contents: read
