@@ -8,8 +8,12 @@ on:
       - 'v*'
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   monitor:
-    uses: vindicta-platform/.github/.github/workflows/package-size-template.yml@main
+    uses: vindicta-platform/.github/.github/workflows/package-size-template.yml@b25991df3c05c3faa4a1376ba206492f8b2ad504 # main
     permissions:
       contents: read

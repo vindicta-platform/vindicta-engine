@@ -1,0 +1,21 @@
+name: Speckit Clarify on PR
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'specs/**'
+      - 'features/**'
+      - '**/*spec.md'
+      - '**/*.feature'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  clarify:
+    uses: vindicta-platform/.github/.github/workflows/speckit-clarify-template.yml@b25991df3c05c3faa4a1376ba206492f8b2ad504 # main
+    permissions:
+      contents: read
+      pull-requests: write

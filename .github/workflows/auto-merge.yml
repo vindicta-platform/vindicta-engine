@@ -4,9 +4,13 @@ on:
   pull_request:
     types: [opened, ready_for_review, reopened]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   auto-merge:
-    uses: vindicta-platform/.github/.github/workflows/auto-merge-template.yml@main
+    uses: vindicta-platform/.github/.github/workflows/auto-merge-template.yml@b25991df3c05c3faa4a1376ba206492f8b2ad504 # main
     permissions:
       pull-requests: write
       contents: write
